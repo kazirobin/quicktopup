@@ -7,8 +7,58 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <h1>Welcome to Quick Top Up</h1>
-  <p>Your one-stop solution for quick and easy mobile top-ups.</p>
-
+  <header>
+    <div class="logo">
+      <img src="./logo.webp" alt="Quick Top Up Logo">
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="./form.html">Home</a></li>
+        <li><a href="./form.html">About</a></li>
+        <li><a href="./form.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button>Log In</button>
+    
+    <!-- Mobile menu toggle button -->
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <h1>Welcome to Quick Top Up</h1>
+      <p>Your one-stop solution for quick and easy mobile top-ups.</p>
+      <button class="cta-button">
+        <a href="./form.html">Get Started</a>
+      </button>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2024 Quick Top Up. All rights reserved.</p>
+  </footer>
+  
+  <script>
+    // Toggle mobile menu
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const navLinks = document.querySelector('.nav-links');
+      const menuToggle = document.querySelector('.menu-toggle');
+      
+      if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+        navLinks.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>

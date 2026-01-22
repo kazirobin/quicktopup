@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Top Up</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+   <header>
+    <div class="logo">
+      <img src="./logo.webp" alt="Quick Top Up Logo">
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./index.html">About</a></li>
+        <li><a href="./index.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button>Log In</button>
+    
+    <!-- Mobile menu toggle button -->
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+  </header>
+<form id="userForm">  
+  <label for="username">Username:</label>  
+  <input type="text" id="username" name="username" required>  
+    
+  <label for="email">Email:</label>  
+  <input type="email" id="email" name="email" required>  
+    
+  <label for="password">Password:</label>  
+  <input type="password" id="password" name="password" required>  
+
+  <!-- Radio Buttons: Subscription Plan Selection -->
+  <fieldset class="subscription-plan-fieldset">
+    <legend class="subscription-plan-legend">Subscription Plan:</legend>
+    <div class="subscription-radio-group">
+      <label class="subscription-radio-label">
+        <input type="radio" name="plan" value="basic">
+        <div class="subscription-plan-card">
+          Basic <span class="subscription-price">- $9.99/month</span>
+        </div>
+      </label>
+      <label class="subscription-radio-label">
+        <input type="radio" name="plan" value="premium">
+        <div class="subscription-plan-card">
+          Premium <span class="subscription-price">- $19.99/month</span>
+        </div>
+      </label>
+      <label class="subscription-radio-label">
+        <input type="radio" name="plan" value="enterprise">
+        <div class="subscription-plan-card">
+          Enterprise <span class="subscription-price">- $49.99/month</span>
+        </div>
+      </label>
+      <label class="subscription-radio-label">
+        <input type="radio" name="plan" value="">
+        <div class="subscription-plan-card">
+          No Plan
+        </div>
+      </label>
+    </div>
+  </fieldset>
+    
+  <button type="submit">Submit</button>
+</form>
+
+ <script>
+    // Toggle mobile menu
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const navLinks = document.querySelector('.nav-links');
+      const menuToggle = document.querySelector('.menu-toggle');
+      
+      if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+        navLinks.classList.remove('active');
+      }
+    });
+  </script>
+
+<script>
+document.getElementById('userForm').addEventListener('submit', function(e) {
+  e.preventDefault(); // Prevent form submission
+  
+  // Create an object manually to ensure proper structure
+  const userData = {
+    username: document.getElementById('username').value,
+    email: document.getElementById('email').value,
+    password: document.getElementById('password').value,
+    plan: document.querySelector('input[name="plan"]:checked') ? 
+          document.querySelector('input[name="plan"]:checked').value : 
+          'no_plan_selected',
+    timestamp: new Date().toISOString(),
+    submittedAt: new Date().toLocaleString()
+  };
+  
+  // Log the object to console
+  console.log('User Data Submitted:', userData);
+  
+  // Also log just the basic object without extra info
+  const basicUserData = {
+    username: userData.username,
+    email: userData.email,
+    password: userData.password,
+    plan: userData.plan
+  };
+  
+  console.log('Basic User Object:', basicUserData);
+});
+</script>
+
+
+</body>
+</html>
